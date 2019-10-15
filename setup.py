@@ -6,9 +6,9 @@ def readme():
 
 setup(name='SampSimu',
       version='0.1',
-      description=' ',
+      description='sampling and simulation',
       long_description=readme(),
-      url='  ',
+      url='https://github.com/siavashtab/SampSimu',
       author='Siavash Tabrizian',
       author_email='stabrizian@gmail.com',
       license='MIT',
