@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """
 @author: siavash tabrizian
 """
@@ -12,4 +12,14 @@
              
 
 """
+
+from distribution import getCDF
+import numpy as np
+
+
+
+class samp_gen:
+      def __init__(self,RVs):
+            self.RVs = RVs
+            self.CDF = getCDF(RVs)
 
