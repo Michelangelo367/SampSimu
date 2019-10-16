@@ -9,7 +9,7 @@ the user to generate samples with the three methods::
 
 1 - Crude Monte Carlo sampling  
 
-In this sampling technique, in order to obtain $$n$$ number of samples, first $$n$$ random numbers should 
+In this sampling technique, in order to obtain latexImg('n_2') $$n$$ number of samples, first $$n$$ random numbers should 
 be generated from the $$\big[0,1\big]^d$$ where $$d$$ is the number of random variables, and after that 
 using the CDF of the values can be taken from the distribution. 
 
