@@ -54,6 +54,21 @@ class samp_gen:
             
             return self.sample
       
+      def antithetic(self, n, seed = 0):
+            if seed != 0:
+                  self.seed = seed 
+            
+            np.random.seed(self.seed)
+            for s in range(round(float(n)/2.0)):                
+                zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()[0]
+                samp = [getVal(rv, zone) for rv in self.CDF]
+                self.sample.append(samp)
+                zone1 = 1.0 - zone
+                samp = [getVal(rv, zone1) for rv in self.CDF]
+                self.sample.append(samp)
+            
+            return self.sample      
+      
       
       
       
