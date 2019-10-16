@@ -44,7 +44,8 @@ class samp_gen:
             self.sample  = []
             self.seed    = seed
             
-      def monte_samp(self, n, seed = 0):
+      def monte(self, n, seed = 0):
+            self.sample = []
             if seed != 0:
                   self.seed = seed 
             
@@ -57,6 +58,7 @@ class samp_gen:
             return self.sample
       
       def antithetic(self, n, seed = 0):
+            self.sample = []
             if seed != 0:
                   self.seed = seed 
             
@@ -65,13 +67,14 @@ class samp_gen:
                 zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()
                 samp = [getVal(self.CDF[r], zone[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
-                zone1 = 1.0 - zone
+                zone1 = [1.0 - z for z in zone]
                 samp = [getVal(self.CDF[r], zone1[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
             
             return self.sample      
 
       def lhs(self, n, seed = 0):
+            self.sample = []
             if seed != 0:
                   self.seed = seed 
             
@@ -81,8 +84,8 @@ class samp_gen:
             for s in range(n):                
                 zone = []
                 for i in range(self.rv_num):
-                      lo = max(0.0, (self.permute[i]-1) * interval )
-                      hi = self.permute[i] * interval 
+                      lo = max(0.0, (self.permute[i][s]-1) * interval )
+                      hi = self.permute[i][s] * interval 
                       zone.append(np.random.uniform(lo,hi,1).tolist()[0])
                 samp = [getVal(self.CDF[r], zone[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
