@@ -32,7 +32,8 @@ def getVal(RV, zone):
       #print(draw)
       return draw[0]
 
-
+# sampling class contains subroutines associated with different 
+# sampling techniques
 class samp_gen:
       def __init__(self,RVs,seed = 0):
             self.RVs = RVs
