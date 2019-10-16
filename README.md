@@ -1,6 +1,5 @@
 # SampSimu
 
---------
 Sampling techniques for simulation and generating new samples
 Author: Siavash Tabrizian
 ============
