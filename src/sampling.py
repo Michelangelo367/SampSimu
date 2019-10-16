@@ -83,13 +83,12 @@ class samp_gen:
                 for i in range(self.rv_num):
                       lo = max(0.0, (self.permute[i]-1) * interval )
                       hi = self.permute[i] * interval 
-                      zone.append()
-                samp = [getVal(rv, zone) for rv in self.CDF]
+                      zone.append(np.random.uniform(lo,hi,1).tolist()[0])
+                samp = [getVal(self.CDF[r], zone[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
             
             return self.sample
             
-            return self.sample    
       
       
       
