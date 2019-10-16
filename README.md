@@ -1,5 +1,6 @@
 
 Sampling techniques for simulation and generating new samples
+
 Author: Siavash Tabrizian
 ---------
 There are different sampling techniques can be used in order to generate samples. This package helps 
