@@ -15,6 +15,7 @@
 
 from distribution import getCDF
 import numpy as np
+from itertools import permutations
 
 # draw from 0-1 interval
 def draw(lo,hi, seed):
@@ -49,8 +50,8 @@ class samp_gen:
             
             np.random.seed(self.seed)
             for s in range(n):                
-                zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()[0]
-                samp = [getVal(rv, zone) for rv in self.CDF]
+                zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()
+                samp = [getVal(self.CDF[r], zone[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
             
             return self.sample
@@ -61,14 +62,34 @@ class samp_gen:
             
             np.random.seed(self.seed)
             for s in range(round(float(n)/2.0)):                
-                zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()[0]
-                samp = [getVal(rv, zone) for rv in self.CDF]
+                zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()
+                samp = [getVal(self.CDF[r], zone[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
                 zone1 = 1.0 - zone
-                samp = [getVal(rv, zone1) for rv in self.CDF]
+                samp = [getVal(self.CDF[r], zone1[r]) for r in range(len(self.CDF))]
                 self.sample.append(samp)
             
             return self.sample      
+
+      def lhs(self, n, seed = 0):
+            if seed != 0:
+                  self.seed = seed 
+            
+            interval = 1.0/float(n)
+            self.permute = [np.random.permutation(n).tolist() for r in range(self.rv_num)]
+            np.random.seed(self.seed)
+            for s in range(n):                
+                zone = []
+                for i in range(self.rv_num):
+                      lo = max(0.0, (self.permute[i]-1) * interval )
+                      hi = self.permute[i] * interval 
+                      zone.append()
+                samp = [getVal(rv, zone) for rv in self.CDF]
+                self.sample.append(samp)
+            
+            return self.sample
+            
+            return self.sample    
       
       
       
