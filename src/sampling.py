@@ -25,7 +25,11 @@ def draw(lo,hi, seed):
 def getVal(RV, zone):
       val = RV[0]
       prob = RV[1]
+      #print(val)
+      #print(prob)
+      #print(zone)
       draw = [val[i] for i in range(len(RV[1])) if prob[i] >= zone]
+      #print(draw)
       return draw[0]
 
 
@@ -42,10 +46,15 @@ class samp_gen:
             if seed != 0:
                   self.seed = seed 
             
-            for s in range(n):
+            np.random.seed(self.seed)
+            for s in range(n):                
                 zone = np.random.uniform(0.0,1.0,self.rv_num).tolist()[0]
-                samp = [getVal(rv, self.seed) for rv in RVs]
+                samp = [getVal(rv, zone) for rv in self.CDF]
                 self.sample.append(samp)
             
             return self.sample
+      
+      
+      
+      
 
