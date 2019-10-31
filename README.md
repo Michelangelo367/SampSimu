@@ -10,7 +10,7 @@ the user to generate samples with three methods::
 1 - Crude Monte Carlo sampling:
 
 The unbiased sample mean estimator $\bar{x} = \frac{\sum x_i}{n}$ can be used in this case in order to estimate the mean $\mu$.
-In this sampling technique, in order to obtain $n$ number of samples, first $$n$$ random numbers should be generated from the $$\big[0,1\big]^d$$ where $$d$$ is the number of random variables, and after that  using the CDF, values can be taken from the distribution. 
+In this sampling technique, in order to obtain $n$ number of samples, first $$n$$ random numbers should be generated from the $$\big[0,1\big]^R$$ where $$R$$ is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
 
 Sampling steps for generating $n$ samples:
 
@@ -26,7 +26,7 @@ For i <= n:
 
 2 - Antithetic Sampling 
 
-In this sampling technique, in order to obtain $n$ number of samples, first $$n/2$$ random numbers should be generated from the $$r_1 = \big[0,1\big]^d$$ where $$d$$ is the number of random variables, and after that  using the CDF, values can be taken from the distribution using $r_1$ and $1-r_1$. 
+In this sampling technique, in order to obtain $n$ number of samples, first $$n/2$$ random numbers should be generated from the $$r_1 = \big[0,1\big]^R$$ where $$R$$ is the number of random variables, and after that  using the CDF, two values can be taken from the distribution using $r_1$ and $1-r_1$. 
 
 
 Sampling steps:
