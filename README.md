@@ -44,13 +44,18 @@ For i <= n/2:
 
 2 - Latin Hypercube Sampling 
 
-In this sampling technique, in order to obtain $n$ number of samples, first each random variable should be stratify into $n$ intervals and then a permutatio
+In this sampling technique, in order to obtain $n$ number of samples, first each random variable should be stratified into $n$ intervals. Thereafter, a permutation of interval should be geenrated for each random variable, and they all together represent $n$ hypercubes in the sample space, then a random observation can be taken from each hypercube randomely.
 
 
 Sampling steps:
 
 ~~~
-
+For i <= n:
+    1. Generate $R$ random permutations of \{1,...,n\} = p^r_i
+    For j <= R: 
+		1. build the cumulative distribution of the random variable (CDF)
+		2. draw a random number from p^r_i interval = r
+		3. find the value of the random variable for r using the CDF of jth random variable
 ~~~
 
 
