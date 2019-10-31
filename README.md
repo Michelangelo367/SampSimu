@@ -9,7 +9,6 @@ the user to generate samples with the three methods::
 
 1 - Crude Monte Carlo sampling:
 
-<<<<<<< HEAD
 The unbiased sample mean estimator $\bar{x} = \frac{\sum x_i}{n}$ can be used in this case in order to estimate the mean $\mu$.
 
 Sampling steps:
@@ -18,12 +17,10 @@ Sampling steps:
 1. build the cumulative distribution of the random variable (CDF)
 2. draw a random number from [0,1] interval = r
 3. find the value of the random variable for r using the CDF
+~~~
+
 =======
 In this sampling technique, in order to obtain $n$ number of samples, first $$n$$ random numbers should 
 be generated from the $$\big[0,1\big]^d$$ where $$d$$ is the number of random variables, and after that 
 using the CDF of the values can be taken from the distribution. 
 
-~~~
->>>monte
->>>>>>> f1d913e3867b1be4cb6e08c4276d7bbf9110b011
-~~~
