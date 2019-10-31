@@ -11,12 +11,26 @@ the user to generate samples with the three methods::
 
 The unbiased sample mean estimator $\bar{x} = \frac{\sum x_i}{n}$ can be used in this case in order to estimate the mean $\mu$.
 
+Sampling steps for generating $n$ samples:
+
+~~~
+For i < n:
+	1. build the cumulative distribution of the random variable (CDF)
+	2. draw a random number from [0,1] interval = r
+	3. find the value of the random variable for r using the CDF
+~~~
+
+======================================
+2 - Antithetic Sampling 
+
 Sampling steps:
 
 ~~~
-1. build the cumulative distribution of the random variable (CDF)
-2. draw a random number from [0,1] interval = r
-3. find the value of the random variable for r using the CDF
+For i < n/2:
+	1. build the cumulative distribution of the random variable (CDF)
+	2. draw a random number from [0,1] interval = r
+	3. find the value of the random variable for r using the CDF
+	3. find the value of the random variable for 1-r using the CDF
 ~~~
 
 =======
