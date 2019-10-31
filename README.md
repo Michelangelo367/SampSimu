@@ -1,5 +1,5 @@
 
-Sampling techniques for simulation and generating new samples
+Sampling techniques for simulation and sample generating 
 
 Author: Siavash Tabrizian - stabrizian@smu.edu
 
