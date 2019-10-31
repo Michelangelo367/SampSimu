@@ -26,11 +26,7 @@ def draw(lo,hi, seed):
 def getVal(RV, zone):
       val = RV[0]
       prob = RV[1]
-      #print(val)
-      #print(prob)
-      #print(zone)
       draw = [val[i] for i in range(len(RV[1])) if prob[i] >= zone]
-      #print(draw)
       return draw[0]
 
 # sampling class contains subroutines associated with different 
