@@ -9,7 +9,7 @@ the user to generate samples with three methods:
 
 1 - Crude Monte Carlo sampling:
 
-The unbiased sample mean estimator <script type="math/tex">\bar{x} = \frac{\sum x_i}{n}</script> can be used in this case in order to estimate the mean $\mu$.
+The unbiased sample mean estimator $\bar{x} = \frac{\sum x_i}{n}$ can be used in this case in order to estimate the mean $\mu$.
 In this sampling technique, in order to obtain $n$ number of samples, first $n$ random numbers should be generated from the $\big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
 
 Sampling steps for generating $n$ samples:
