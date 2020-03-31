@@ -10,7 +10,7 @@ the user to generate samples with three methods:
 1 - Crude Monte Carlo sampling:
 
 The unbiased sample mean estimator $\bar{x} = \frac{\sum x_i}{n}$ can be used in this case in order to estimate the mean $\mu$.
-In this sampling technique, in order to obtain $n$ number of samples, first $n$ random numbers should be generated from the $\big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
+In this sampling technique, in order to obtain $n$ observations, first $n$ random numbers should be generated from $\big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
 
 Sampling steps for generating $n$ samples:
 
@@ -26,7 +26,7 @@ For i <= n:
 
 2 - Antithetic Sampling 
 
-In this sampling technique, in order to obtain $n$ number of samples, first $n/2$ random numbers should be generated from the $r_1 = \big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, two values can be taken from the distribution using $r_1$ and $1-r_1$. 
+In this sampling technique, in order to obtain $n$ observations, first $n/2$ random numbers should be generated from $r = \big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, two values can be taken from the distribution using $r$ and $1-r$. 
 
 
 Sampling steps:
@@ -44,7 +44,7 @@ For i <= n/2:
 
 2 - Latin Hypercube Sampling 
 
-In this sampling technique, in order to obtain $n$ number of samples, first each random variable should be stratified into $n$ intervals. Thereafter, a permutation of interval should be geenrated for each random variable, and they all together represent $n$ hypercubes in the sample space, then a random observation can be taken from each hypercube randomely.
+In this sampling technique, in order to obtain $n$ observations, first each random variable should be stratified into $n$ intervals. Thereafter, a permutation of intervals should be generated for each random variable, and they all together represent $n$ hypercubes in the sample space, then a random observation can be taken from each hypercube randomely.
 
 
 Sampling steps:
