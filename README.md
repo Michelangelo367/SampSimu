@@ -10,7 +10,7 @@ Author: Siavash Tabrizian - stabrizian@smu.edu
 There are different sampling techniques can be used in order to generate sample. This package helps 
 the user to generate samples with three methods:
 
-1 - Simple random sampling:
+1 - Crude Monte Carlo sampling (Simple random sampling/SRS):
 
 The unbiased sample mean estimator is as follwos: 
 
@@ -49,7 +49,7 @@ For i <= n/2:
 
 ======================================
 
-2 - Latin Hypercube Sampling 
+2 - Latin Hypercube Sampling (LHS) 
 
 In this sampling technique, in order to obtain <a href="https://www.codecogs.com/eqnedit.php?latex=n" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> observations, first each random variable should be stratified into <a href="https://www.codecogs.com/eqnedit.php?latex=n" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> intervals. Thereafter, a permutation of intervals should be generated for each random variable, and they all together represent <a href="https://www.codecogs.com/eqnedit.php?latex=n" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> hypercubes in the sample space, then a random observation can be taken from each hypercube randomely.
 
