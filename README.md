@@ -1,5 +1,5 @@
 
-Sampling techniques for simulation and random sample generation
+Sampling and resampling techniques for simulation, random sample generation, estimation, and experiment design
 
 Author: Siavash Tabrizian - stabrizian@smu.edu
 
