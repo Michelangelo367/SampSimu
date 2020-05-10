@@ -9,8 +9,12 @@ the user to generate samples with three methods:
 
 1 - Crude Monte Carlo sampling:
 
-The unbiased sample mean estimator <a href="https://www.codecogs.com/eqnedit.php?latex=\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{n}&space;x_i}{n}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{n}&space;x_i}{n}" title="\overline{x} = \frac{\sum\limits_{i = 1}^{n} x_i}{n}" /></a> can be used in this case in order to estimate the mean $\mu$.
-In this sampling technique, in order to obtain $n$ observations, first $n$ random numbers should be generated from $\big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
+The unbiased sample mean estimator is as follwos: 
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{n}&space;x_i}{n}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{n}&space;x_i}{n}" title="\overline{x} = \frac{\sum\limits_{i = 1}^{n} x_i}{n}" /></a> 
+
+can be used in this case in order to estimate the mean <a href="https://www.codecogs.com/eqnedit.php?latex=\mu" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\mu" title="\mu" /></a>.
+In this sampling technique, in order to obtain <a href="https://www.codecogs.com/eqnedit.php?latex=n" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> observations, first <a href="https://www.codecogs.com/eqnedit.php?latex=n" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> random numbers should be generated from <a href="https://www.codecogs.com/eqnedit.php?latex=\big[0,1\big]^R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\big[0,1\big]^R" title="\big[0,1\big]^R" /></a> where <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?R" title="R" /></a> is the number of random variables, and after that  using the CDF, the value can be taken from the distribution. 
 
 Sampling steps for generating $n$ samples:
 
