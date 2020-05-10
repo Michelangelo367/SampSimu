@@ -6,6 +6,7 @@ Sampling and resampling techniques for simulation, random sample generation, est
 Author: Siavash Tabrizian - stabrizian@smu.edu
 
 ---------
+## 1 - Sampling: 
 There are different sampling techniques can be used in order to generate sample. This package helps 
 the user to generate samples with three methods:
 
