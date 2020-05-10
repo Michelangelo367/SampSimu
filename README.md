@@ -7,7 +7,7 @@ Author: Siavash Tabrizian - stabrizian@smu.edu
 There are different sampling techniques can be used in order to generate sample. This package helps 
 the user to generate samples with three methods:
 
-1 - Crude Monte Carlo sampling:
+1 - Simple random sampling:
 
 The unbiased sample mean estimator is as follwos: 
 
@@ -30,7 +30,7 @@ For i <= n:
 
 2 - Antithetic Sampling 
 
-In this sampling technique, in order to obtain $n$ observations, first $n/2$ random numbers should be generated from $r = \big[0,1\big]^R$ where $R$ is the number of random variables, and after that  using the CDF, two values can be taken from the distribution using $r$ and $1-r$. 
+In this sampling technique, in order to obtain <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> observations, first <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{n}{2}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\frac{n}{2}" title="\frac{n}{2}" /></a> random numbers should be generated from <a href="https://www.codecogs.com/eqnedit.php?latex=r&space;=&space;\big[0,1\big]^R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?r&space;=&space;\big[0,1\big]^R" title="r = \big[0,1\big]^R" /></a> where <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?R" title="R" /></a> is the number of random variables, and after that  using the CDF, two values can be taken from the distribution using <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?r" title="r" /></a> and <a href="https://www.codecogs.com/eqnedit.php?latex=1&space;-&space;r" target="_blank"><img src="https://latex.codecogs.com/svg.latex?1&space;-&space;r" title="1 - r" /></a>. 
 
 
 Sampling steps:
