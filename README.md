@@ -72,5 +72,5 @@ In this section of the code the description of the second class of sampling modu
 
 There are <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> number of replications and in each replication a sample is going to be generated using the techniques from the previous section. The final estimation is the sample mean over the obtained estimations: 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{m}&space;\overline{x}_i}{m}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\overline{x}&space;=&space;\frac{\sum\limits_{i&space;=&space;1}^{n}&space;x_i}{n}" title="\overline{x} = \frac{\sum\limits_{i = 1}^{m} \overline{x}_i}{m}" /></a> 
+<a href="https://www.codecogs.com/eqnedit.php?latex=\overline{x}&space;=&space;\frac{\sum\limits_{r&space;=&space;1}^{m}&space;\overline{x}_{r}}{m}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\overline{x}&space;=&space;\frac{\sum\limits_{r&space;=&space;1}^{m}&space;\overline{x}_{r}}{m}" title="\overline{x} = \frac{\sum\limits_{r = 1}^{m} \overline{x}_{r}}{m}" /></a>
 
