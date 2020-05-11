@@ -17,6 +17,8 @@ from distribution import ProbDist
 import numpy as np
 from itertools import permutations
 import time
+import random
+import scipy.stats
 
 # draw from 0-1 interval
 def draw(lo,hi, seed):
@@ -133,6 +135,14 @@ class samp_gen(ProbDist):
                   estim += self.weight[s] * self.evaluate(self.sample[s])   
               self.estimate = estim
               return estim
+      
+      #Estimate based on the generated input sample
+      def _samp_mean(self, sample):
+          estim = 0
+          weight = 1.0/len(sample)
+          for s in range(len(sample)):
+              estim += weight * self.evaluate(sample[s])   
+          return estim      
 
       #Sample generation method - for generating a sample of size n 
       #with the sample mthod of samptype
@@ -162,15 +172,15 @@ class samp_gen(ProbDist):
    provides a better sense about the distributions
 '''
 class resampling(samp_gen):
-    def __init__(self, n_rep = 30, alpha = 0.05, samptype = 'SRS', ssize = 100):
-        self.n_rep = n_rep #number of replications
+    def __init__(self, n_rep = 30, alpha = 0.025, samptype = 'SRS', rssize = 100):
+        self.n_rep = n_rep  #number of replications
         self.mean = None
         self.std  = None
         self.alpha = alpha
         self.confidence = []
         self.error = None
         self.samptype = samptype
-        self.ssize = ssize
+        self.rssize = rssize  #resampling size
     
     @running_time
     def monte_carlo(self):
@@ -178,10 +188,11 @@ class resampling(samp_gen):
         mean_list = []
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
-            [s, estim] = self.sample_gen(self, self.ssize, \
+            [s, estim] = self.sample_gen(self, self.rssize, \
                           seed = rep, samptype = self.samptype)
-            mean_list.append(weight * estim)
+            mean_list.append(estim)
             mean += weight * estim
+        return [mean, mean_list]
             
     @running_time
     def bootstrap(self):
@@ -189,10 +200,37 @@ class resampling(samp_gen):
         mean_list = []
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
-            [s, estim] = self.sample_gen(self, self.ssize, \
-                          seed = rep, samptype = self.samptype)
-            mean_list.append(weight * estim)
+            sample = random.choices(self.sample, k = self.rssize)
+            estim  = self._samp_mean(sample)
+            mean_list.append(estim)
             mean += weight * estim
+        return [mean, mean_list]
+    
+    @running_time
+    def jacknife(self):
+        mean = 0.0
+        mean_list = []
+        weight = 1.0/len(self.sample)
+        for rep in range(len(self.sample)):
+            sample = self.sample
+            sample = sample.remove(self.sample[rep])
+            estim  = self._samp_mean(sample)
+            mean_list.append(estim)
+            mean += weight * estim
+        return [mean, mean_list]    
+    
+    #subroutine to get the confidence interval of a list of estimates and the mean
+    def getCI(self,mean,mean_list):
+        self.std = 0.0
+        weight = 1/(len(mean_list)-1)
+        for m in mean_list:
+            self.std += weight * (m - mean)**2
+        self.error = scipy.stats.norm(0,1).ppf(1-self.alpha)*\
+                                  self.std/(np.sqrt(len(mean_list)))
+        self.confidence = [mean - self.error, mean + self.error]
+        return self.confidence
+            
+        
             
         
       
