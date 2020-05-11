@@ -65,7 +65,7 @@ For i <= n:
 		3. find the value of the random variable for r using the CDF of jth random variable
 ~~~
 
-## 1 - Resampling: 
+## 2 - Resampling: 
 In this section of the code the description of the second class of sampling module is presented:
 
 1 - Monte Carlo simulation:
