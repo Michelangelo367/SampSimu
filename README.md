@@ -70,7 +70,14 @@ In this section of the code the description of the second class of sampling modu
 
 1 - Monte Carlo simulation:
 
-There are <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> number of replications and in each replication a sample is going to be generated using the techniques from the previous section. The final estimation is the sample mean over the obtained estimations: 
+There are <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> number of replications and in each replication a sample is going to be generated using one of the techniques from the previous section. The final estimation is the sample mean over the obtained estimations: 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\overline{x}&space;=&space;\frac{\sum\limits_{r&space;=&space;1}^{m}&space;\overline{x}_{r}}{m}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\overline{x}&space;=&space;\frac{\sum\limits_{r&space;=&space;1}^{m}&space;\overline{x}_{r}}{m}" title="\overline{x} = \frac{\sum\limits_{r = 1}^{m} \overline{x}_{r}}{m}" /></a>
 
+2 - Bootstraping:
+
+In this resmapling technique, <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> of smaller size samples are going to be generated from a given sample of the larger size. The estimation is can be done by using the sample mean estimator
+
+3 - Jacknife:
+
+It is another resampling technique for generating a set of samples of smaller size from a given sample of larger size. In this method <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> number of samples are going to be generated from a sample of size <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a>. In each sample <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?i" title="i" /></a>, observation <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?i" title="i" /></a> is taken out from the sample, and this leads to <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?i" title="i" /></a>  samples of size <a href="https://www.codecogs.com/eqnedit.php?latex=n-1" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n-1" title="n-1" /></a>. The estimation is similar to bootstraping can be obtained using the sample mean estimator
