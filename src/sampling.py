@@ -21,6 +21,7 @@ import time
 import random
 import scipy.stats
 import matplotlib.pyplot as plt
+import matplotlib.mlab as mlab
 
 # draw from 0-1 interval
 def draw(lo,hi, seed):
@@ -289,7 +290,31 @@ class visualsamp(resampling):
         plt.grid(True)
         plt.savefig(self.loc + '/lawlarge')
         plt.show()
-            
+    
+    #Histogram representation of the sampling method comparing to normal dist
+    #This is experimenting the central limit theorem
+    def centlimit(self, ssize = 100, \
+                   samptype = 'SRS', separate = False,\
+                   num_bins =20, title = 'Central limit theorem'):
+        truemean = self.getmu()
+        self.samptype = samptype
+        self.rssize = ssize
+        [o1,o2] = self.monte_carlo()
+        mean = o1
+        meanlist = []
+        x = []
+        std = self.std
+        for m in o2:
+            meanlist.append((m-mean)/(std/np.sqrt(len(o2))))
+        n, bins, patches = plt.hist(np.array(meanlist), num_bins, normed = 1, \
+                                    facecolor = 'blue', alpha = 0.5) 
+        y = mlab.normpdf(bins,0.0,1.0)
+        plt.plot(bins,y,'r--')
+        plt.xlabel('mean estimates')
+        plt.ylabel('probabilities')
+        plt.title(title)
+        plt.show
+        plt.savefig(self.loc + '/central')
 
                 
             
