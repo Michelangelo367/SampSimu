@@ -106,7 +106,7 @@ class ProbDist(Eval):
                 evalval = 0.0
                 for s in range(len(self.totsamp)):
                     est = self.evaluate(self.totsamp[s])
-                    evalval += self.totprob[s] * ests
+                    evalval += self.totprob[s] * est
                     self.evals.append(est)
                 self.mu = evalval
                 return evalval                
@@ -128,9 +128,8 @@ class ProbDist(Eval):
     #Finding the true standard deviation of the populations
     def getsigma(self):
         self.sigma = 0.0
-        for s in self.evals:
-            self.sigma += (s - self.mu)**2
-        self.sigma = self.sigma/len(self.evals)
+        for s in range(len(self.evals)):
+            self.sigma += self.totprob[s] * (self.evals[s] - self.mu)**2
         self.sigma = np.sqrt(self.sigma)
         return self.sigma
             
