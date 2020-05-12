@@ -13,8 +13,7 @@
 
 """
 
-import os
-from distribution import ProbDist
+
 import numpy as np
 from itertools import permutations
 
@@ -34,13 +33,15 @@ def getVal(RV, zone):
 
 
 # sampling class contains subroutines associated with different 
+#ProbDist inut should be an instance of ProbDist class in distribution module      
 # sampling techniques
-class samp_gen(ProbDist):
-      def __init__(self, RVs,seed = 0):
-            self.RVs = RVs
-            self.rv_num = len(RVs)
-            self.CDF = self.getCDF(RVs)
-            self.newdist = RVs
+class samp_gen():
+      def __init__(self, ProbDist,seed = 0):
+            self.dist = ProbDist
+            self.RVs = ProbDist.RVs
+            self.rv_num = len(self.RVs)
+            self.CDF = self.getCDF(self.RVs)
+            self.newdist = self.RVs
             self.sample  = []
             self.weight  = []
             self.estimate = None
@@ -123,7 +124,7 @@ class samp_gen(ProbDist):
               raise
           else:
               for s in range(len(self.sample)):
-                  estim += self.weight[s] * self.evaluate(self.sample[s])   
+                  estim += self.weight[s] * self.dist.evaluate(self.sample[s])   
               self.estimate = estim
               return estim
       
@@ -132,7 +133,7 @@ class samp_gen(ProbDist):
           estim = 0
           weight = 1.0/len(sample)
           for s in range(len(sample)):
-              estim += weight * self.evaluate(sample[s])   
+              estim += weight * self.dist.evaluate(sample[s])   
           return estim      
 
       #Sample generation method - for generating a sample of size n 

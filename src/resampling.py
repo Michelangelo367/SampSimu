@@ -4,7 +4,7 @@ Created on Tue May 12 10:45:32 2020
 
 @author: siavash tabrizian stabrizian@smu.edu
 """
-
+import numpy as np
 import time
 import random
 import scipy.stats
@@ -26,9 +26,12 @@ def running_time(method):
    taking a sample of fixed size.   
    The resampling class is simulate the process in different ways to 
    provides a better sense about the distributions
+   
+   samp_gen input should be an instance of samp_gen class from sampling module
 '''
-class resampling(samp_gen):
-    def __init__(self, n_rep = 30, alpha = 0.025, samptype = 'SRS', rssize = 100):
+class resampling():
+    def __init__(self, samp_gen, n_rep = 30, alpha = 0.025, samptype = 'SRS', rssize = 100):
+        self.sampling = samp_gen
         self.n_rep = n_rep  #number of replications
         self.mean = None
         self.std  = None
@@ -44,7 +47,7 @@ class resampling(samp_gen):
         mean_list = []
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
-            [s, estim] = self.sample_gen(self, self.rssize, \
+            [s, estim] = self.sampling.sample_gen(self, self.rssize, \
                           seed = rep, samptype = self.samptype)
             mean_list.append(estim)
             mean += weight * estim
@@ -57,7 +60,7 @@ class resampling(samp_gen):
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
             sample = random.choices(self.sample, k = self.rssize)
-            estim  = self._samp_mean(sample)
+            estim  = self.sampling._samp_mean(sample)
             mean_list.append(estim)
             mean += weight * estim
         return [mean, mean_list]
@@ -70,7 +73,7 @@ class resampling(samp_gen):
         for rep in range(len(self.sample)):
             sample = self.sample
             sample = sample.remove(self.sample[rep])
-            estim  = self._samp_mean(sample)
+            estim  = self.sampling._samp_mean(sample)
             mean_list.append(estim)
             mean += weight * estim
         return [mean, mean_list]    
