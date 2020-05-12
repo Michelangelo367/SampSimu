@@ -76,7 +76,7 @@ There are <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"
 
 2 - Bootstraping:
 
-In this resmapling technique, <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> of smaller size samples are going to be generated from a given sample of the larger size. The estimation can be done by using the sample mean estimator
+In this resmapling technique, <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?m" title="m" /></a> of smaller size samples are going to be generated from a given sample of the larger size. The estimation can be done by using the sample mean estimator.
 
 3 - Jacknife:
 
