@@ -13,12 +13,14 @@
 
 """
 
+import os
 from distribution import ProbDist
 import numpy as np
 from itertools import permutations
 import time
 import random
 import scipy.stats
+import matplotlib.pyplot as plt
 
 # draw from 0-1 interval
 def draw(lo,hi, seed):
@@ -231,7 +233,65 @@ class resampling(samp_gen):
         return self.confidence
             
         
+'''
+   This class contains the subroutine for visualization using the sampling 
+   and resampling classes.
+'''
+class visualsamp(resampling):
+    def __init__(self, loc):
+        self.loc = loc
+        if not os.path.exists(self.loc):
+            os.makedirs(self.loc)
+        self.figcount = 0
+    
+    #Visualization on law of large numbers 
+    def lawlargevs(self, minssize = 10, maxssize = 100, \
+                   increment = 10, samptype = ['SRS'], separate = False,\
+                   title = 'Law of Large Numbers'):
+        truemean = self.getmu()
+        if separate == False:
+            fig = plt.figure(num = self.figcount)
+        for st in samptype:
+            self.samptype = samptype
+            mean = []
+            expnum = 0
+            confupp = []
+            confdwn = []
+            x = []
+            for sz in range(minssize,maxssize,increment):
+                x.append(sz)
+                self.rssize = sz
+                [o1,o2] = self.monte_carlo()
+                mean.append(o1)
+                mu.append(truemean)
+                [o1, o2] = self.getCI(o1,o2)
+                confupp.append(o1)
+                confdwn.append(o2)
+                expnum += 1
+            if separate == True:
+                self.figcount += 1
+                fig = plt.figure()
+                plt.plot(np.array(x),np.array(mean))
+                plt.plot(np.array(x),np.array(mu))
+                plt.fill_between(np.array(x),np.array(confupp),np.array(confdwn), alpha = 0.3)
+                plt.xlabel('Number of observations --->')
+                plt.ylabel('Estimation value --->')
+                plt.title(title)
+                plt.grid(True)
+                plt.savefig(self.loc + '/lawlarge' + samptype)
+                plt.show()
+            else:
+                plt.plot(np.array(x),np.array(mean))           
+        plt.plot(np.array(x),np.array(mu))
+        plt.xlabel('Number of observations --->')
+        plt.ylabel('Estimation value --->')
+        plt.title(title)
+        plt.grid(True)
+        plt.savefig(self.loc + '/lawlarge')
+        plt.show()
             
-        
+
+                
+            
       
 

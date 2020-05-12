@@ -83,7 +83,7 @@ class ProbDist(Eval):
     
 
     #get the total possible outcomes of the distribution and their weights
-    def gettot(self):
+    def _gettot(self):
         combinations = []
         combinations2 = []
         if self.totsamp == None:
@@ -98,13 +98,24 @@ class ProbDist(Eval):
     #This mean depends on the evaluation function which is abstract 
     #and should be defined by the user
     def getmu(self):
-        if self.mu == None:
-            evalval = 0.0
-            for s in range(len(self.totsamp)):
-                evalval += self.totprob[s] * self.evaluate(self.totsamp[s])
-            self.mu = evalval
-            return evalval                
+        if self.totsamp == None:
+            [s,p] = self._gettot()
+            if self.mu == None:
+                evalval = 0.0
+                for s in range(len(self.totsamp)):
+                    evalval += self.totprob[s] * self.evaluate(self.totsamp[s])
+                self.mu = evalval
+                return evalval                
+            else:
+                return self.mu 
         else:
-            return self.mu 
+            if self.mu == None:
+                evalval = 0.0
+                for s in range(len(self.totsamp)):
+                    evalval += self.totprob[s] * self.evaluate(self.totsamp[s])
+                self.mu = evalval
+                return evalval                
+            else:
+                return self.mu 
 
     
