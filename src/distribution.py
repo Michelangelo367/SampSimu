@@ -16,7 +16,7 @@
              
 
 """
-
+import numpy as np
 import itertools
 from abc import ABC, abstractmethod 
 
@@ -63,6 +63,7 @@ class ProbDist(Eval):
         self.rvsizes = [len(r[0]) for r in RVs]
         self.totsamp = totsamp
         self.totprob = totprob
+        self.evals = []
         self.mu = mu
         
     # Python code to get the Cumulative sum of a list 
@@ -99,23 +100,39 @@ class ProbDist(Eval):
     #and should be defined by the user
     def getmu(self):
         if self.totsamp == None:
+            self.evals = []
             [s,p] = self._gettot()
             if self.mu == None:
                 evalval = 0.0
                 for s in range(len(self.totsamp)):
-                    evalval += self.totprob[s] * self.evaluate(self.totsamp[s])
+                    est = self.evaluate(self.totsamp[s])
+                    evalval += self.totprob[s] * ests
+                    self.evals.append(est)
                 self.mu = evalval
                 return evalval                
             else:
                 return self.mu 
         else:
             if self.mu == None:
+                self.evals = []
                 evalval = 0.0
                 for s in range(len(self.totsamp)):
-                    evalval += self.totprob[s] * self.evaluate(self.totsamp[s])
+                    est = self.evaluate(self.totsamp[s])
+                    evalval += self.totprob[s] * est
+                    self.evals.append(est)
                 self.mu = evalval
                 return evalval                
             else:
                 return self.mu 
+    
+    #Finding the true standard deviation of the populations
+    def getsigma(self):
+        self.sigma = 0.0
+        for s in self.evals:
+            self.sigma += (s - self.mu)**2
+        self.sigma = self.sigma/len(self.evals)
+        self.sigma = np.sqrt(self.sigma)
+        return self.sigma
+            
 
     

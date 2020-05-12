@@ -5,6 +5,7 @@ Created on Tue May 12 10:46:08 2020
 @author: siavash tabrizian stabrizian@smu.edu
 """
 import os
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
@@ -36,6 +37,7 @@ class visualsamp():
             expnum = 0
             confupp = []
             confdwn = []
+            mu = []
             x = []
             for sz in range(minssize,maxssize,increment):
                 x.append(sz)
