@@ -80,6 +80,7 @@ class visualsamp():
         self.resample.samptype = samptype
         self.resample.rssize = ssize
         [o1,o2] = self.resample.monte_carlo()
+        CI = self.resample.getCI(o1,o2)
         meanlist = []
         std = self.resample.std
         for m in o2:
@@ -93,3 +94,39 @@ class visualsamp():
         plt.title(title)
         plt.show
         plt.savefig(self.loc + '/central')
+        
+    
+    #Comparing barcharts
+    def barcompare(self, minssize = 10, maxssize = 100, \
+                   increment = 10, samptype = ['SRS', 'LHS'], separate = False,\
+                   title = 'Comparing sampling techniques'):
+        std1 = []
+        std2 = []
+        xlabel = []
+        for ss in range(minssize,maxssize, increment):
+            self.resample.samptype = samptype[0]
+            self.resample.rssize = ss
+            [o1,o2] = self.resample.monte_carlo()
+            CI = self.resample.getCI(o1,o2)
+            std1.append(self.resample.std)
+            self.resample.samptype = samptype[1]
+            self.resample.rssize = ss
+            [o1,o2] = self.resample.monte_carlo()
+            CI = self.resample.getCI(o1,o2)
+            std2.append(self.resample.std)
+            xlabel.append(ss)
+        width = 0.3
+        fig, ax = subplots()
+        x = np.arange(len(xlabel))
+        rec1 = ax.bar(x - width/2, std1, width, label = samptype[0])
+        rec1 = ax.bar(x - width/2, std2, width, label = samptype[1])
+        ax.set_ylabel('standard deviation')
+        ax.set_xlabel('sample size')
+        ax.set_xticks(x)
+        ax.set_xticklabels(xlabel)
+        ax.legend
+        fig.tightlayout()
+        plt.show
+        plt.savefig(self.loc + '/bar_'+samptype[0]+'_'+samptype[1])
+            
+            
