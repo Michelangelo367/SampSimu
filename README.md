@@ -1,5 +1,5 @@
 ## SampSimu
-A Python package for multi-variate sampling and resampling techniques for simulation, random sample generation, estimation, and experiment design
+A Python package for multivariate sampling and resampling techniques for simulation, random sample generation, estimation, and experiment design
 
 ---------
 
