@@ -8,6 +8,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
+from scipy.stats import norm
 
         
 '''
@@ -32,7 +33,7 @@ class visualsamp():
         if separate == False:
             fig = plt.figure(num = self.figcount)
         for st in samptype:
-            self.resample.samptype = samptype
+            self.resample.samptype = st
             mean = []
             expnum = 0
             confupp = []
@@ -42,12 +43,12 @@ class visualsamp():
             for sz in range(minssize,maxssize,increment):
                 x.append(sz)
                 self.resample.rssize = sz
-                [o1,o2] = self.resample.monte_carlo()
-                mean.append(o1)
+                out = self.resample.monte_carlo()
+                mean.append(out[0][0])
                 mu.append(truemean)
-                [o1, o2] = self.resample.getCI(o1,o2)
-                confupp.append(o1)
-                confdwn.append(o2)
+                out = self.resample.getCI(out[0][0],out[0][1])
+                confupp.append(out[0])
+                confdwn.append(out[1])
                 expnum += 1
             if separate == True:
                 self.figcount += 1
@@ -64,6 +65,7 @@ class visualsamp():
             else:
                 plt.plot(np.array(x),np.array(mean))           
         plt.plot(np.array(x),np.array(mu))
+        plt.fill_between(np.array(x),np.array(confupp),np.array(confdwn), alpha = 0.3)
         plt.xlabel('Number of observations --->')
         plt.ylabel('Estimation value --->')
         plt.title(title)
@@ -80,14 +82,14 @@ class visualsamp():
         self.resample.samptype = samptype
         self.resample.rssize = ssize
         [o1,o2] = self.resample.monte_carlo()
-        CI = self.resample.getCI(o1,o2)
+        CI = self.resample.getCI(o1[0],o1[1])
         meanlist = []
-        std = self.resample.std
-        for m in o2:
-            meanlist.append((m-truemean)/(std/np.sqrt(len(o2))))
-        n, bins, patches = plt.hist(np.array(meanlist), num_bins, normed = 1, \
+        std = self.resample.sampling.dist.getsigma()
+        for m in o1[1]:
+            meanlist.append((m-truemean)/(std/np.sqrt(len(o1[1]))))
+        n, bins, patches = plt.hist(np.array(meanlist), num_bins, density = True,\
                                     facecolor = 'blue', alpha = 0.5) 
-        y = mlab.normpdf(bins,0.0,1.0)
+        y = norm.pdf(bins,0.0,1.0)
         plt.plot(bins,y,'r--')
         plt.xlabel('mean estimates')
         plt.ylabel('probabilities')

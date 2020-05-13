@@ -57,7 +57,8 @@ def combine2(terms, accum):
 
 
 class ProbDist(Eval):
-    def __init__(self, RVs, totsamp = None, totprob = None, mu = None):
+    def __init__(self, RVs, evalfunc, totsamp = None, totprob = None, mu = None):
+        self.evaluate = evalfunc
         self.RVs = RVs
         self.rvnum = len(RVs)
         self.rvsizes = [len(r[0]) for r in RVs]
@@ -92,6 +93,7 @@ class ProbDist(Eval):
             probs = [rv[1] for rv in self.RVs]
             self.totsamp = combine(vals,[])
             self.totprob = combine2(probs,1.0)
+            return [self.totsamp, self.totprob]
         else:
             return [self.totsamp, self.totprob]
     
@@ -101,7 +103,9 @@ class ProbDist(Eval):
     def getmu(self):
         if self.totsamp == None:
             self.evals = []
-            [s,p] = self._gettot()
+            o = self._gettot()
+            s = o[0]
+            p = o[1]
             if self.mu == None:
                 evalval = 0.0
                 for s in range(len(self.totsamp)):

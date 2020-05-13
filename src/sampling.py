@@ -40,7 +40,7 @@ class samp_gen():
             self.dist = ProbDist
             self.RVs = ProbDist.RVs
             self.rv_num = len(self.RVs)
-            self.CDF = self.getCDF(self.RVs)
+            self.CDF = self.dist.getCDF()
             self.newdist = self.RVs
             self.sample  = []
             self.weight  = []
@@ -142,16 +142,16 @@ class samp_gen():
           sample = []
           estim = 0.0
           if samptype == 'SRS':
-              sample = self._SRS(self, n, seed)
+              sample = self._SRS(n, seed)
               estim = self._estim_calc()
           elif samptype == 'LHS':
-              sample = self._LHS(self, n, seed)
+              sample = self._LHS(n, seed)
               estim = self._estim_calc()
           elif samptype == 'antithetic':
-              sample = self._antithetic(self, n, seed)
+              sample = self._antithetic(n, seed)
               estim = self._estim_calc()
           else:
-              print('Error: Sampling technique does not exist!')
+              print('Error: Sampling technique does not exist!', samptype)
               raise
           return [sample, estim]
               

@@ -47,7 +47,7 @@ class resampling():
         mean_list = []
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
-            [s, estim] = self.sampling.sample_gen(self, self.rssize, \
+            [s, estim] = self.sampling.sample_gen(self.rssize, \
                           seed = rep, samptype = self.samptype)
             mean_list.append(estim)
             mean += weight * estim
