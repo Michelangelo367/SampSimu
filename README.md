@@ -110,4 +110,4 @@ visual = visualsamp(resampl,'Res/')
 
 visual.lawlargevs()
 ```
-![](https://i.imgur.com/yeF8c2X.png) 
+![](https://github.com/siavashtab/SampSimu/blob/master/Experiment/Res/lawlarge.png) 
