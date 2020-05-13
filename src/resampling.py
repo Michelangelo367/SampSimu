@@ -59,7 +59,7 @@ class resampling():
         mean_list = []
         weight = 1.0/self.n_rep
         for rep in range(self.n_rep):
-            sample = random.choices(self.sample, k = self.rssize)
+            sample = random.choices(self.sampling.sample, k = self.rssize)
             estim  = self.sampling._samp_mean(sample)
             mean_list.append(estim)
             mean += weight * estim
@@ -69,10 +69,10 @@ class resampling():
     def jacknife(self):
         mean = 0.0
         mean_list = []
-        weight = 1.0/len(self.sample)
-        for rep in range(len(self.sample)):
+        weight = 1.0/len(self.sampling.sample)
+        for rep in range(len(self.sampling.sample)):
             sample = self.sample
-            sample = sample.remove(self.sample[rep])
+            sample = sample.remove(self.sampling.sample[rep])
             estim  = self.sampling._samp_mean(sample)
             mean_list.append(estim)
             mean += weight * estim
