@@ -81,3 +81,32 @@ In this resmapling technique, <a href="https://www.codecogs.com/eqnedit.php?late
 3 - Jacknife:
 
 It is another resampling technique for generating a set of samples of smaller size from a given sample of larger size. In this method <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a> number of samples are going to be generated from a sample of size <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a>. In each sample <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?i" title="i" /></a>, observation <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?i" title="i" /></a> is taken out from the sample, and this leads to <a href="https://www.codecogs.com/eqnedit.php?latex=R" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n" title="n" /></a>  samples of size <a href="https://www.codecogs.com/eqnedit.php?latex=n-1" target="_blank"><img src="https://latex.codecogs.com/svg.latex?n-1" title="n-1" /></a>. The estimation is similar to bootstraping can be obtained using the sample mean estimator.
+
+## Example
+In the experiment folder there are some expermints using this package. exp1 has 4 random variables and the evaluation funciton is defined in evalfunc. We can test the law of large numbers when the sample size increases. 
+```c
+var1 = [[0.0,1.0,2.0],[0.1,0.4,0.5]]
+var2 = [[1.5,2.5,3.5,4.5,8.0],[0.05,0.05,0.2,0.4,0.3]]
+var3 = [[0.1,7.0],[0.05,0.95]]
+var4 = [[0.0,0.05,0.07,0.9,0.4],[0.2,0.2,0.5,0.05,0.05]]
+
+RVs =[var1,var2,var3,var4]
+
+
+def evalfunc(obs):
+    out = 0.0
+    out += 10*obs[0]*obs[1]
+    out += 100*obs[2]
+    out += (10*obs[3])**2
+    return out
+
+dist = ProbDist(RVs, evalfunc) #instance of the distribution with its evaluation function
+
+sampl = samp_gen(dist)
+
+resampl = resampling(sampl)
+
+visual = visualsamp(resampl,'Res/')
+
+visual.lawlargevs()
+```
