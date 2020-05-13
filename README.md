@@ -110,3 +110,4 @@ visual = visualsamp(resampl,'Res/')
 
 visual.lawlargevs()
 ```
+![](https://i.imgur.com/yeF8c2X.png) 
