@@ -81,8 +81,8 @@ class visualsamp():
         truemean = self.resample.sampling.dist.getmu()
         self.resample.samptype = samptype
         self.resample.rssize = ssize
-        [o1,o2] = self.resample.monte_carlo()
-        CI = self.resample.getCI(o1[0],o1[1])
+        o = self.resample.monte_carlo()
+        CI = self.resample.getCI(o[0][0],o[0][1])
         meanlist = []
         std = self.resample.sampling.dist.getsigma()
         for m in o1[1]:
@@ -108,13 +108,13 @@ class visualsamp():
         for ss in range(minssize,maxssize, increment):
             self.resample.samptype = samptype[0]
             self.resample.rssize = ss
-            [o1,o2] = self.resample.monte_carlo()
-            CI = self.resample.getCI(o1,o2)
+            o = self.resample.monte_carlo()
+            CI = self.resample.getCI(o[0][0],o[0][1])
             std1.append(self.resample.std)
             self.resample.samptype = samptype[1]
             self.resample.rssize = ss
-            [o1,o2] = self.resample.monte_carlo()
-            CI = self.resample.getCI(o1,o2)
+            o = self.resample.monte_carlo()
+            CI = self.resample.getCI(o[0][0],o[0][1])
             std2.append(self.resample.std)
             xlabel.append(ss)
         width = 0.3
